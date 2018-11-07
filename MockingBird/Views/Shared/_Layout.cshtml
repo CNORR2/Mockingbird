@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
+    <title>@ViewBag.Title - Mockingbird</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head> 
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <a href="#" class="navbar-left"><img src="/Images/MockingbirdLogo.png"></a>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink(" ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Dashboard", "Dashboard", "Dashboard")</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Remote Monitoring
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Disk Space", "", "")</li>
+                            <li>@Html.ActionLink("Reboot/Shutdown Server", "", "")</li>
+                            <li>@Html.ActionLink("Remote Performance", "", "")</li>
+                            <li>@Html.ActionLink("Scheduled Tasks", "Index", "RemoteScheduleTask")</li>
+                            <li>@Html.ActionLink("Services", "Index", "RemoteServices")</li>
+                            <li>@Html.ActionLink("Process Killer", "", "")</li>
+                            <li>@Html.ActionLink("User Ad Group Checker", "Index", "AdGroupLookup")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Reporting
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Morning Checks", "", "")</li>
+                            <li>@Html.ActionLink("Afternoon Checks", "", "")</li>
+                            <li>@Html.ActionLink("Server Healthcheck", "", "")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Administaration
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Api Monitor", "", "")</li>
+                            <li>@Html.ActionLink("Automation Monitoring", "", "")</li>
+                            <li>@Html.ActionLink("Directory Counting", "", "")</li>
+                            <li>@Html.ActionLink("Disk Space Monitor", "Index", "DiskCheckers")</li>
+                            <li>@Html.ActionLink("Log File Monitor", "", "")</li>
+                            <li>@Html.ActionLink("Mail Manager", "", "")</li>
+                            <li>@Html.ActionLink("Scheduled Task Monitor", "Index", "SchedulledTasks")</li>
+                            <li>@Html.ActionLink("Service Monitor", "", "")</li>
+                            <li>@Html.ActionLink("Version Controller", "", "")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Configuration
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Applications", "", "")</li>
+                            <li>@Html.ActionLink("Environments", "Index", "HostedEnvironments")</li>
+                            <li>@Html.ActionLink("Servers", "Index", "HostedServers")</li>
+                            <li>@Html.ActionLink("Schedulled Task Statuses", "Index", "SchedulledTaskStatuses")</li>
+                            <li>@Html.ActionLink("Users", "", "")</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Mockingbird</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

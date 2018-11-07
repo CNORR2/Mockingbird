@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Ad Group Lookup";
+    var AdGroupResults = ViewBag.AdGroupResults as IEnumerable<MockingBird.Models.AdGroupLookup>;
+}
+
+<h2>Ad Group Lookup</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.Raw("Get AD Groups From a Username")
+    @Html.TextBox("UserName", null, new { @class = "form-control" })
+
+    <br />
+    <p>
+        <input type="submit" value="Get Groups" class="btn btn-default" />
+    </p>
+}
+
+@if (ViewBag.AdGroupLookup.UserName != null & ViewBag.AdGroupLookup.UserName != "Username does not exists")
+{
+
+    <h5>
+        <b>Name:</b> @ViewBag.AdGroupLookup.Name
+        <b>Username:</b> @ViewBag.AdGroupLookup.UserName.ToUpper()
+        <b>AD Group Count:</b> @ViewBag.AdGroupLookup.AdGroupName.Count
+    </h5>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>AD Group Name</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (ViewBag.AdGroupLookup.AdGroupName.Count > 0)
+            {
+                foreach (var item in ViewBag.AdGroupLookup.AdGroupName)
+                {
+                    <tr>
+                        <td>@item</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+
+@if (ViewBag.AdGroupLookup.UserName == "Username does not exists")
+{
+    <h5>
+        <b>Username does not exists</b>
+    </h5>
+}

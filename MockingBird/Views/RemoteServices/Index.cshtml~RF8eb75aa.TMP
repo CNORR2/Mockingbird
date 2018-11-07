@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Remote Services";
+}
+
+<h2>Remote Services</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        @if (ViewBag.Services.Count == 0)
+        {
+            @Html.Raw("Select your server")
+            @Html.DropDownList("ServerName", (SelectList)ViewBag.ServerList, "Please Select...", new { @class = "form-control" })
+
+        <p>
+            <input type="submit" value="Get Tasks" class="btn btn-default" />
+        </p>
+    }
+    else
+    {
+        <p>
+            @Html.Raw("Selected Server: " + "<b>" + ViewBag.SelectedServerName + "</b>")
+        </p>
+        <p>
+            @Html.ActionLink("Change selected server", "Index", "RemoteServices")
+        </p>
+
+        @Html.Raw("Select a Service")
+
+        <input type="hidden" value="@ViewBag.SelectedServerName" name="ServerName" />
+        @*@Html.TextBox("ServerName", (string)ViewBag.SelectedServerName, new { @class = "hidden" })*@
+        @Html.DropDownList("ServiceName", new SelectList(((List<string>)ViewBag.Services).Select(d => new SelectListItem { Text = d, Value = d }), "Value", "Text", "Please Select..."), new { @class = "form-control" })
+        <br />
+        <p>
+            <input type="submit" value="Get Details" class="btn btn-default" />
+        </p>
+    }
+        </p>
+
+    }
+
+@if (ViewBag.ServiceDetails != null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Service Task Detail</th>
+                <th>Value/Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Service Display Name</td>
+                <td>@ViewBag.ServiceDetails.DisplayName</td>
+            </tr>
+            <tr>
+                <td>Service Name</td>
+                <td>@ViewBag.ServiceDetails.ServiceName</td>
+            </tr>
+            <tr>
+                <td>Service Type</td>
+                <td>@ViewBag.ServiceDetails.ServiceType</td>
+            </tr>
+            <tr>
+                <td>Startup Type</td>
+                <td>@ViewBag.ServiceDetails.StartupType</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>@ViewBag.ServiceDetails.Status</td>
+            </tr>
+        </tbody>
+    </table>
+
+    using (Html.BeginForm())
+    {
+
+        <p>
+            <input type="hidden" value="@ViewBag.SelectedServerName" name="ServerName" />
+            <input type="hidden" value="@ViewBag.ServiceDetails.DisplayName" name="ServiceName" />
+
+            <input type="submit" name="Start" value="Start" class="btn btn-default" />
+            <input type="submit" name="Stop" value="Stop" class="btn btn-default" />
+            <input type="submit" name="Restart" value="Restart" class="btn btn-default" />
+        </p>
+    }
+
+    @if (ViewBag.Message != null)
+    {
+        <script>
+            $(document).ready(function(){
+            alert('@ViewBag.Message');
+            });
+        </script>
+
+    }
+}

@@ -1,0 +1,128 @@
+﻿@model MockingBird.Models.SchedulledTasks
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SchedulledTasks</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SchedulledTaskName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SchedulledTaskName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastTaskResult)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastTaskResult)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastRunTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastRunTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NextRunTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NextRunTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PollTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PollTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminEmailAlert)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminEmailAlert)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlertSubscribers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlertSubscribers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubcriptionEmailAddresses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubcriptionEmailAddresses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Disable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Disable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShowOnDash)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShowOnDash)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IgnorePollTimeOnNextRun)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IgnorePollTimeOnNextRun)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,115 @@
+﻿@model IEnumerable<MockingBird.Models.SchedulledTasks>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Schedulled Task Monitoring</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by Server Name or Schedulled Task Name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" class="btn btn-default" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SchedulledTaskName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastTaskResult)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastRunTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NextRunTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PollTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminEmailAlert)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AlertSubscribers)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubcriptionEmailAddresses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowOnDash)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IgnorePollTimeOnNextRun)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SchedulledTaskName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastTaskResult)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastRunTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NextRunTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PollTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminEmailAlert)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlertSubscribers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubcriptionEmailAddresses)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowOnDash)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IgnorePollTimeOnNextRun)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>

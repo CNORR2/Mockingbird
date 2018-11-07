@@ -1,0 +1,47 @@
+﻿<h1>Dashboard</h1>
+<p>Dashboad monitors</p>
+
+<script type="text/javascript">
+
+    $('#DiskMonitoringDash').load('/Dashboard/DiskMonitoring');
+
+    setInterval("$('#DiskMonitoringDash').load('/Dashboard/DiskMonitoring')", 5000);
+</script>
+
+<div class="row">
+    <div class="col-md-4">
+        <h3>Disk Monitor</h3>
+
+        <div id="DiskMonitoringDash" style="width:50px">
+            @*@Html.Action("DiskMonitoring", "Dashboard",);*@
+            @*@Html.RenderPartial("DiskMonitoring.cshtml");*@
+            @*// @Html.RenderAction("DiskMonitoring", "Dashboard",);*@
+            @* @Html.Partial("DiskMonitoring", "Dashboard")*@
+            @* @Ajax.ActionLink("Link", "DiskMonitoring", "Dashboard", new AjaxOptions { UpdateTargetId = "DiskMonitoringDash" })*@
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <h3>Scheduled Task Monitor</h3>
+
+        <div id="ScheduleMonitoringDash" style="width:200px">
+            @*@Html.Action("DiskMonitoring", "Dashboard")*@
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <h3>Service Monitor</h3>
+
+        <div id="ScheduleMonitoringDash" style="width:200px">
+            @*@Html.Action("DiskMonitoring", "Dashboard")*@
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h3>Api Monitor</h3>
+
+        <div id="ScheduleMonitoringDash" style="width:200px">
+            @*@Html.Action("DiskMonitoring", "Dashboard")*@
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MockingBird.Models.DiskChecker>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ServerName)
+        </th>
+        <th>
+            <b>Drive</b>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastRan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DriveSize)
+        </th>
+        <th>
+            <b>Available</b>
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DriveLetter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastRan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DriveSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AvailableSpace)
+        </td>
+    </tr>
+}
+
+</table>

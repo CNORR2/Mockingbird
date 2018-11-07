@@ -1,0 +1,12 @@
+﻿@model IEnumerable<MockingBird.Models.HostedServers>
+
+<table class="table">
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Environment)
+        </td>
+    </tr>
+}
+
+</table>

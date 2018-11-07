@@ -1,0 +1,46 @@
+﻿<h1>Dashboard</h1>
+<p>Dashboad monitors</p>
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+    //Initial page loads here
+    $(window).load(function() {
+        $('#DiskMonitoringDash').load('/Dashboard/DiskMonitoring');
+    });
+
+    //Refresh pages here
+    setInterval("$('#DiskMonitoringDash').load('/Dashboard/DiskMonitoring')", 5000);
+</script>
+
+<div class="row">
+    <div class="col-md-4">
+        <h3>Disk Monitor</h3>
+
+        <div id="DiskMonitoringDash" style="width:50px">
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <h3>Scheduled Task Monitor</h3>
+
+        <div id="ScheduleMonitoringDash" style="width:200px">
+            @*@Html.Action("DiskMonitoring", "Dashboard")*@
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <h3>Service Monitor</h3>
+
+        <div id="ScheduleMonitoringDash" style="width:200px">
+            @*@Html.Action("DiskMonitoring", "Dashboard")*@
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h3>Api Monitor</h3>
+
+        <div id="ScheduleMonitoringDash" style="width:200px">
+            @*@Html.Action("DiskMonitoring", "Dashboard")*@
+        </div>
+    </div>
+</div>
+

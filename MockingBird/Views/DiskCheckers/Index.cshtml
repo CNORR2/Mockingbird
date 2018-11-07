@@ -1,0 +1,123 @@
+﻿@model PagedList.IPagedList<MockingBird.Models.DiskChecker>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Disk Space Monitoring</h2>
+<p>Here you can monitor disk space on remote servers</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by Server Name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" class="btn btn-default" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ServerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().DriveLetter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().LowDiskPercentage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().PollTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().AdminEmailAlert)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().AlertSubscribers)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().SubcriptionEmailAddresses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Disable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ShowOnDash)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().LastRan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().DriveSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().AvailableSpace)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().IgnorePollTimeOnNextRun)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriveLetter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LowDiskPercentage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PollTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminEmailAlert)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlertSubscribers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubcriptionEmailAddresses)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowOnDash)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastRan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriveSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailableSpace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IgnorePollTimeOnNextRun)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Create New Disk Space Monitor", "Create")
+</p>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

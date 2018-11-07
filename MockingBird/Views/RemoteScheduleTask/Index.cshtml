@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Remote Schedule Tasks Monitoring";
+    var ScheduleDetails = ViewBag.ScheduleDetails as IEnumerable<MockingBird.Models.RemoteScheduleTask>;
+}
+
+<h2>Remote Schedulle Task Monitoring</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        @if (ViewBag.SchedulledTasks.Count == 0)
+        {
+            @Html.Raw("Select your server")
+            @Html.DropDownList("ServerName", (SelectList)ViewBag.ServerList, "Please Select...", new { @class = "form-control" })
+
+        <p>
+            <input type="submit" value="Get Tasks" class="btn btn-default" />
+        </p>
+    }
+    else
+    {
+        <p>
+            @Html.Raw("Selected Server: " + "<b>" + ViewBag.SelectedServerName + "</b>")
+        </p>
+        <p>
+            @Html.ActionLink("Change selected server", "Index", "RemoteScheduleTask")
+        </p>
+
+        @Html.Raw("Select your schedulled Task")
+
+        <input type="hidden" value="@ViewBag.SelectedServerName" name="ServerName" />
+        @*@Html.TextBox("ServerName", (string)ViewBag.SelectedServerName, new { @class = "hidden" })*@
+        @Html.DropDownList("ScheduleTask", new SelectList(((List<string>)ViewBag.SchedulledTasks).Select(d => new SelectListItem { Text = d, Value = d }), "Value", "Text", "Please Select..."), new { @class = "form-control" })
+        <br />
+        <p>
+            <input type="submit" value="Get Details" class="btn btn-default" />
+        </p>
+    }
+        </p>
+    }
+
+@if (ViewBag.ScheduleDetails != null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Schedule Task Detail</th>
+                <th>Value/Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Schedulled Task Name</td>
+                <td>@ViewBag.ScheduleDetails.SchedulledTaskName</td>
+            </tr>
+            <tr>
+                <td>Last Task Result</td>
+                <td>
+                    @ViewBag.ScheduleDetails.LastTaskResult
+
+                    @if (!string.IsNullOrEmpty(ViewBag.ScheduleDetails.LastTaskResult))
+                    {
+                        try
+                        {
+                            @Html.Raw("(")
+                            @ViewBag.TaskStatuses[Convert.ToDouble(ViewBag.ScheduleDetails.LastTaskResult)]
+                            @Html.Raw(")")
+                        }
+                        catch
+                        {
+                            @Html.Raw("No description for this result)")
+                        }
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>Last Run Time</td>
+                <td>@ViewBag.ScheduleDetails.LastRunTime</td>
+            </tr>
+            <tr>
+                <td>Next Run Time</td>
+                <td>@ViewBag.ScheduleDetails.NextRunTime</td>
+            </tr>
+            <tr>
+                <td>Credentials Being Used</td>
+                <td>@ViewBag.ScheduleDetails.Credentials</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>@ViewBag.ScheduleDetails.Author</td>
+            </tr>
+            <tr>
+                <td>Enabled/Disabled</td>
+                <td>@ViewBag.ScheduleDetails.Status</td>
+            </tr>
+        </tbody>
+    </table>
+
+    using (Html.BeginForm())
+    {
+        <p>
+            Task Actions for <b>@ViewBag.ScheduleDetails.SchedulledTaskName</b>
+        </p>
+
+        <p>
+            <input type="hidden" value="@ViewBag.SelectedServerName" name="ServerName" />
+            <input type="hidden" value="@ViewBag.ScheduleDetails.SchedulledTaskName" name="ScheduleTask" />
+
+            <input type="submit" name="TaskToDo" value="Start" class="btn btn-default" />
+            <input type="submit" name="TaskToDo" value="Stop" class="btn btn-default" />
+            <input type="submit" name="TaskToDo" value="Enable" class="btn btn-default" />
+            <input type="submit" name="TaskToDo" value="Disable" class="btn btn-default" />
+        </p>
+    }
+}

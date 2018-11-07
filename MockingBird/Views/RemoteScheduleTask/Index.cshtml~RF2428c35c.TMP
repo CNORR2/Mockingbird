@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Remote Schedule Tasks Monitoring";
+}
+
+<h2>Remote Schedulle Task Monitoring</h2>
+
+@using (Html.BeginForm())
+{
+<p>
+    Server to check for Schedulled Tasks
+    @Html.DropDownList("ServerName", (SelectList)ViewBag.ServerList, "Please Select...", new { @class = "form-control" })
+</p>
+<p>
+    <input type="submit" value="Get Schedulled Tasks" class="btn btn-default" />
+</p>
+
+}
+
+
+
+@if (ViewBag.SchedulledTasks.Count > 0)
+{
+
+    
+    @Html.DropDownList("SchedulledTaskName", new SelectList(((List<string>)ViewBag.SchedulledTasks).Select(d => new SelectListItem { Text = d, Value = d }), "Value", "Text"), new { @class = "form-control" })
+
+
+}
+
+
